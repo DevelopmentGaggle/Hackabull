@@ -11,7 +11,7 @@ def spotify_GetSongRecommendations(genres="pop", seed_artists='0', seed_tracks='
     """
     This function can be used to generate a list of spotify song recommendations.
     :param genres: A string.The genre of music that the song recommendations should fall under. The default value is "pop".
-    :param seed_artists: A string.A spotify artist ID. The recommended songs will be similar to this artist's music. The default value '0' indicates that a specific artist should not be considered when generating the recommended songs.
+    :param seed_artists: A string. A spotify artist ID. The recommended songs will be similar to this artist's music. The default value '0' indicates that a specific artist should not be considered when generating the recommended songs.
     :param seed_tracks:A string. A spotify track ID. The recommended songs will be similar to this song. The default value '0' indicates that a specific track should not be considered when generating the recommended songs.
     :param limit: An integer. The number of song recommendations to generate. The default value 5 will generate a list of 5 songs.
     :param market: A string. The country that the songs are intended for. The default value of "US" means that the songs will be popular in the US market.
