@@ -49,6 +49,12 @@ def spotify_GetSongRecommendations(genres="pop", seed_artists='0', seed_tracks='
     #          print(f"{i+1}) \"{j['name']}\" by {j['artists'][0]['name']}")
 
 def spotify_CreateNewPlaylist(playlistName="My AI Generated Playlist", public=False):
+    """
+    This function creates a new, empty spotify playlist.
+    :param playlistName: A string. This is the name of the playlist. The default value "My AI Generated Playlist" will create a new playlist titled "My AI Generated Playlist".
+    :param public: A boolean. A value of True will make the playlist publicly accessable. A value of False will make the playlist private so only the user can access it. The default value is False.
+    :return: A single value which is the spotify ID of the newly created playlist.
+    """
     # CREATE A NEW PLAYLIST
     endpoint_url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
 
@@ -67,6 +73,12 @@ def spotify_CreateNewPlaylist(playlistName="My AI Generated Playlist", public=Fa
 
 
 def spotify_AddSongsToPlaylist(playlistID, songURIs):
+    """
+    This function adds a list of songs to an existing playlist.
+    :param playlistID: A string. The spotify ID of the playlist to add songs too. This parameter is required.
+    :param songURIs: A list of strings representing the spotify IDs of the tracks.
+    :return: returns 0 to indicate the operation was successful
+    """
     # FILL THE NEW PLAYLIST WITH THE RECOMMENDATIONS
     endpoint_url = f"https://api.spotify.com/v1/playlists/{playlistID}/tracks"
 
