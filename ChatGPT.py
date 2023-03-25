@@ -46,9 +46,12 @@ The second type of question will use of a set of given functions to answer the q
 A list of all the available functions you can use are included below.
 Function descriptions start:
 1. spotify_get_liked_count() where the returned value is the number of liked songs in your spotify account.
+2. spotify_GetSongRecommendations(genres="pop", seed_artists='0', seed_tracks='0', limit=5, market="US", danceability="0.9")
+        
+3. spotify_CreateNewPlaylist(playlistName="My AI Generated Playlist", public=False)
+4. spotify_AddSongsToPlaylist(playlistID, songURIs):
 
 End of function descriptions, no other functions defined.
-
 
 A few examples with proper formatting are provided below for how to answer the user prompts:
 An example for the first type of question is;

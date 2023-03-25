@@ -6,7 +6,18 @@ token = \
     "BQAYALG5LlC3N0_qTYq_SXWTC61gM0OPXJWi6MyBiufwKcYWA-IIGRezsbVh5kSe6yGh53RvBpWs2YiV7Zpj0Q8T25CepMmScFdxx_58ALlKe1XGrTCNAcrICXVi49QpKDMd76OvTmJA5hVODPlXGqLfMMbgaPCFhaf53w9_E-G2DWmLsq4Jw1rjPdMyLF81sYoOPWgeUhxSqY60GwJUD2ML7WZCA41OtbGl79irAFmlwcsNQgPyAXe_P5W_QqyPIcMVF_-0rvv9uWHd4HZWCw_ygxvwMO8I0hbyM6-7AyI41arcNVR5MF8NIq2lTdXbUI_Oy4gcMtvb_g"
 user_id = "rvwo6t4opi64jp86slw1qkihh"
 
-def spotify_GetSongRecommendations(genres="jazz", seed_artists='0', seed_tracks='0', limit=5, market="US", danceability="0.9"):
+
+def spotify_GetSongRecommendations(genres="pop", seed_artists='0', seed_tracks='0', limit=5, market="US", danceability="0.9"):
+    """
+    This function can be used to generate a list of spotify song recommendations.
+    :param genres: A string.The genre of music that the song recommendations should fall under. The default value is "pop".
+    :param seed_artists: A string.A spotify artist ID. The recommended songs will be similar to this artist's music. The default value '0' indicates that a specific artist should not be considered when generating the recommended songs.
+    :param seed_tracks:A string. A spotify track ID. The recommended songs will be similar to this song. The default value '0' indicates that a specific track should not be considered when generating the recommended songs.
+    :param limit: An integer. The number of song recommendations to generate. The default value 5 will generate a list of 5 songs.
+    :param market: A string. The country that the songs are intended for. The default value of "US" means that the songs will be popular in the US market.
+    :param danceability: A decimal number. A measure of how danceable the song recommendations should be on a scale of 0.0 to 1.0. The default value of 0.9 is very danceable.
+    :return: A tuple of 3 values. The first value is a list of the spotify track IDs. The second value is a list of the song track names. The thrid value is a list of the corresponding artist names.
+    """
     endpoint_url = "https://api.spotify.com/v1/recommendations?"
 
     # FILTERS
