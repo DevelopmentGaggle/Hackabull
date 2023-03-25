@@ -1,0 +1,119 @@
+
+WindowManager:
+    MainWindow: #holds chat screen & operation screen (display song info. etc.)
+
+<MainWindow>
+    name: 'main'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: (0.8, 1) #set the size
+            pos_hint: {'center_x': 0.5} #position to center
+
+            #chat screen
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.5, 1) #set the size
+                padding: dp(50), dp(50)
+
+
+                MDTopAppBar:
+                    size_hint: (1, None)
+                    title: 'Chat With '
+                    font_size: 35
+
+
+                MDScrollView:
+
+                    MDList:
+
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello'
+
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello1'
+
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello2'
+
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello3'
+
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello4'
+
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello5'
+
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello4'
+
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello5'
+
+                MDFloatingActionButton:
+                    pos_hint: {'center_x': 0.5}
+                    icon: "android"
+                    md_bg_color: app.theme_cls.accent_color
+                    elevation: 2
+
+
+            #operation screen
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.5, 1) #set the size
+                padding: dp(50), dp(50)
+
+            #For Spotify
+                #TODO: ImageList then card view?`
+                MDCard:
+                    elevation: 2
+                    padding: 25
+                    spacing: 25
+                    orientation: 'vertical'
+
+
+
+
+                    #Cover Img
+                    AsyncImage:
+                        source: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+                        keep_ratio: True
+                        opacity: 0.3
+
+                    #TODO: Do styling for song info.
+                    #TODO: add an icon??
+                    MDLabel:
+                        text: 'Song Title'
+                        font_size: 20
+                        size_hint: (1, None)
+                        halign: 'center'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        opacity: 1
+
+                    MDLabel:
+                        text: 'Artist Name'
+                        font_size: 20
+                        size_hint: (1, None)
+                        halign: 'center'
+                        pos_hint: {'center_x': 0.5}
+                        color: 'white'
+
+
+
+
+
+
+
+
