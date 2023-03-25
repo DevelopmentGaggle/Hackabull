@@ -14,6 +14,7 @@ class WindowManager(ScreenManager):
 
 class MainApp(MDApp):
     def build(self):
+        # jdgskgj
         '''Red', 'Pink', 'Purple', 'DeepPurple', '
         Indigo', 'Blue', 'LightBlue', 'Cyan',
         'Teal', 'Green', 'LightGreen', 'Lime',
