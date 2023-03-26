@@ -1,9 +1,9 @@
-NAMEXXXX - HACKABULL-23
+Promptify - HACKABULL-23
 ====================
-<img src="logo/XXXXX_logo.png" alt="drawing" width="600"/>
+<img src="Resources/Promptify-Round.png" alt="drawing" width="600"/>
 
 
-Voice Assistance of the Future
+Letting your voice do the work
 ---------------------
 
 
