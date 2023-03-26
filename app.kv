@@ -8,13 +8,14 @@ WindowManager:
 <ChatWindow>
     name: 'chat'
     MDBoxLayout:
-        md_bg_color: (30/255, 215/255, 96/255, 0.7)
+        md_bg_color: (30/255, 215/255, 96/255, 0.8)
         orientation: 'vertical'
         MDFloatingActionButtonSpeedDial:
             icon: "cog-outline"
             data: app.data
             root_button_anim: True
             size_hint: (None, None)
+            opacity: 0.8
 
         MDBoxLayout:
             orientation: 'horizontal'
@@ -45,7 +46,7 @@ WindowManager:
                 MDFloatingActionButton:
                     pos_hint: {'center_x': 0.5}
                     icon: "microphone"
-                    md_bg_color: app.theme_cls.accent_color
+                    md_bg_color: app.theme_cls.primary_color
                     elevation: 2
                     on_release:
                         app.root.current = "operation" #change the current window to "second" (whatever you named for the second screen)
@@ -56,13 +57,14 @@ WindowManager:
     name: 'operation'
 
     MDBoxLayout:
-        md_bg_color: (30/255, 215/255, 96/255, 0.7)
+        md_bg_color: (30/255, 215/255, 96/255, 0.8)
         orientation: 'vertical'
         MDFloatingActionButtonSpeedDial:
             icon: "cog-outline"
             data: app.data
             root_button_anim: True
             size_hint: (None, None)
+            opacity: 0.8
 
 
         MDBoxLayout:
@@ -96,7 +98,7 @@ WindowManager:
                 MDFloatingActionButton:
                     pos_hint: {'center_x': 0.5}
                     icon: "microphone"
-                    md_bg_color: app.theme_cls.accent_color
+                    md_bg_color: app.theme_cls.primary_color
                     elevation: 2
                     on_release:
                         app.root.current = "chat" #change the current window to "second" (whatever you named for the second screen)
