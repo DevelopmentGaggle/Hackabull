@@ -3,7 +3,6 @@ from kivymd.uix.label import MDLabel
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 import datadog
-from threading import Thread
 from kivy.clock import Clock
 
 #Define windows
@@ -41,15 +40,14 @@ class MainApp(MDApp):
             self.add_message("Voice Assistant", "Hello, ask me a question!")
 
         # Load TTS thread
-        tts_thread = Thread(target=self.datadog.stt_driver, args=(self.datadog, ))
-        tts_thread.start()
+        self.datadog.run_tts()
 
         # Function to execute every cycle
         Clock.schedule_interval(self.periodic, 1 / 30.)
 
     def periodic(self):
-        if not self.datadog.response_q.empty():
-            response = self.datadog.response_q.get()
+        if not self.datadog.response.empty():
+            response = self.datadog.response.get()
             if not self.datadog.is_talking:
                 is_talking = True
                 self.add_message("test", response[0])
