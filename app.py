@@ -7,6 +7,14 @@ from kivy.clock import Clock
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget
 
 
+# https://github.com/kivy/kivy/pull/7299
+# Helps with screen blurriness on Windows
+from ctypes import windll, c_int64
+from kivy.core.window import Window
+windll.user32.SetProcessDpiAwarenessContext(c_int64(-4))
+Window.maximize()
+
+
 # Define windows
 class LogInScreen(Screen):
     pass
