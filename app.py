@@ -60,6 +60,7 @@ class PromptifyApp(MDApp):
         self.fresh_data = True
         self.last_song = ""
         self.user_name = "user"
+        self.mute = False
 
     def build(self):
         Window.bind(on_request_close=self.on_request_close)
@@ -75,6 +76,15 @@ class PromptifyApp(MDApp):
 
         kv = Builder.load_file('app.kv')
         return kv
+
+    def account_creation(self, name, email, password, confirm_password):
+        if name == "" or email == "" or password == "":
+            return
+
+        if password != confirm_password:
+            return
+
+        self.on_load(name, password)
 
     def on_load(self, name, password):
         if name == "" or password == "":
@@ -144,6 +154,17 @@ class PromptifyApp(MDApp):
             icon = 'robot-happy-outline'
             radius = [50, 50, 50, 0]
             color = self.theme_cls.primary_dark
+            # if it is a gpt prompt, output it to the history
+            widget_h = TwoLineAvatarIconListItem(
+                IconLeftWidget(
+                    icon=icon
+                ),
+                text=name,
+                secondary_text=text,
+                bg_color=color,
+                radius=radius
+            )
+            self.root.ids.history_screen.ids.chatlist_h.add_widget(widget_h)
         else:
             icon = 'account-circle-outline'
             radius = [50, 50, 0, 50]
@@ -254,9 +275,9 @@ class PromptifyApp(MDApp):
     def secondary_text(self, text):
         self.root.ids.operation_screen.ids.secondary_description.text = text
 
-    # Additional functions for extraneous behaviors
-    def mute(self, state):
-        pass
+    # Toggles mute condition
+    def mute_microphone(self):
+        self.mute = not self.mute
 
     def confirm(self):
         pass
