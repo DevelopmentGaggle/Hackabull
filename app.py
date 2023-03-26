@@ -7,7 +7,8 @@ from kivy.clock import Clock
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget
 from kivy.config import Config
 import time
-import spotipy as sp
+import spotify_engine2
+from spotify_engine2 import sp as sp
 
 
 # https://github.com/kivy/kivy/pull/7299
@@ -108,6 +109,8 @@ class PromptifyApp(MDApp):
         Clock.schedule_interval(self.periodic, 1 / 30.)
 
     def periodic(self, french_roast):
+        song_name = ""
+
         if not self.data_doggo.stt_to_GUI.empty():
             response = self.data_doggo.stt_to_GUI.get()
 
@@ -124,26 +127,26 @@ class PromptifyApp(MDApp):
 
         if not self.data_doggo.chatGPT_to_GUI.empty():
             gpt_response = self.data_doggo.chatGPT_to_GUI.get()
+            # If a song starts playing, switch screens
+            use_last_played = 0
+            song_to_display = sp.currently_playing()
+            if song_to_display is None:
+                use_last_played = 1
+                song_to_display = sp.current_user_recently_played(limit=1)
+            if song_to_display is None:
+                use_last_played = 2
+
+            # Get song name
+            song_name = None
+            if use_last_played == 0:
+                song_name = sp.currently_playing()['item']['name']
+            elif use_last_played == 1:
+                song_name = sp.current_user_recently_played(limit=1)['items'][0]['track']['name']
+            else:
+                song_name = ""
+
             self.add_message("Assistant", gpt_response)
             self.fresh_data = True
-
-        # If a song starts playing, switch screens
-        use_last_played = 0
-        song_to_display = sp.currently_playing()
-        if song_to_display is None:
-            use_last_played = 1
-            song_to_display = sp.current_user_recently_played(limit=1)
-        if song_to_display is None:
-            use_last_played = 2
-
-        # Get song name
-        song_name = None
-        if use_last_played == 0:
-            song_name = sp.currently_playing()['item']['name']
-        elif use_last_played == 1:
-            song_name = sp.current_user_recently_played(limit=1)['items'][0]['track']['name']
-        else:
-            song_name = ""
 
         if song_name not in self.last_song:
             self.last_song = song_name
