@@ -97,7 +97,7 @@ class PromptifyApp(MDApp):
         self.root.current = 'chat'
         # If the screen is empty, add a prompt to the chat list
         if len(self.root.ids.main_screen.ids.chatlist.children) == 0:
-            self.add_message("Assistant", "Hello, ask me a question!")
+            self.add_message("Assistant", f"Hello, {name} ask me a question!")
 
         # Add the name of the user to a locally stored variable
         self.user_name = name
