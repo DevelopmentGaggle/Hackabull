@@ -154,7 +154,7 @@ WindowManager:
     MDTopAppBar:
         title: ""
         anchor_title: "left"
-        left_action_items: [["account", lambda x: app.move_account(self)], ["history", lambda x: app.move_history()],  ["tune", lambda x: app.callback_3()],["chat-remove-outline", lambda x: app.callback_4()]]
+        left_action_items: [["account", lambda x: app.move_account(self)], ["history", lambda x: app.move_history()],["chat-remove-outline", lambda x: app.clear_widgets()]]
     MDBoxLayout:
 #        md_bg_color: (30/255, 215/255, 96/255, 0.8)
         orientation: 'vertical'
@@ -227,7 +227,7 @@ WindowManager:
     MDTopAppBar:
         title: ""
         anchor_title: "left"
-        left_action_items: [["account", lambda x: app.move_account(self)], ["history", lambda x: app.move_history()],  ["tune", lambda x: app.callback_3()],["chat-remove-outline", lambda x: app.callback_4()]]
+        left_action_items: [["account", lambda x: app.move_account(self)], ["history", lambda x: app.move_history()],["chat-remove-outline", lambda x: app.callback_4()]]
     MDBoxLayout:
 #        md_bg_color: (30/255, 215/255, 96/255, 0.8)
         orientation: 'vertical'
