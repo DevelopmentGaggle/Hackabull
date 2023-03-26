@@ -148,6 +148,22 @@ class PromptifyApp(MDApp):
         # time.sleep(1)
         self.stop = True
 
+    # Functions to modify the spotify specific things, but could theoretically be used in other cases
+    def api_name(self):
+        pass
+
+    # Will be used for album covers
+    def change_picture(self):
+        pass
+
+    # Will be used for song names
+    def primary_text(self):
+        pass
+
+    # Will be used for artist names
+    def secondary_text(self):
+        pass
+
 
 PromptifyApp().run()
 
