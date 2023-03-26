@@ -4,6 +4,8 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 import datadog
 from kivy.clock import Clock
+from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget
+
 
 #Define windows
 class ChatWindow(Screen):
@@ -19,7 +21,7 @@ class WindowManager(ScreenManager):
 class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.datadog = datadog.DataDog
+        self.data_doggo = datadog.DataDog()
 
     def build(self):
 
@@ -40,25 +42,44 @@ class MainApp(MDApp):
             self.add_message("Voice Assistant", "Hello, ask me a question!")
 
         # Load TTS thread
-        self.datadog.run_tts()
+        self.data_doggo.run_tts()
 
         # Function to execute every cycle
         Clock.schedule_interval(self.periodic, 1 / 30.)
 
     def periodic(self):
-        if not self.datadog.response.empty():
-            response = self.datadog.response.get()
-            if not self.datadog.is_talking:
+        if not self.data_doggo.response.empty():
+            response = self.data_doggo.response.get()
+            if not self.data_doggo.is_talking:
                 is_talking = True
                 self.add_message("test", response[0])
             else:
                 self.edit_message(response[0])
 
-    def add_message(self, name, text):
-        pass
+    def add_message(self, name, type, text):
+        CGPT = "Tesss"
+        if name == CGPT:
+            icon = 'robot-happy-outline'
+            radius = [50, 50, 50, 0]
+            color = self.theme_cls.primary_dark
+        else:
+            icon = 'account-circle-outline'
+            radius = [50, 50, 0, 50]
+            color = self.theme_cls.primary_color
+        widget = TwoLineAvatarIconListItem(
+            IconLeftWidget(
+                icon=icon
+            ),
+            text=name,
+            secondary_text=text,
+            bg_color=color,
+            radius=radius
+        )
+        self.root.ids.main_screen.ids.chatlist.add_widget(widget)
 
     def edit_message(self, text):
-        pass
+        self.root.ids.main_screen.ids.chatlist.children[0].secondary_text = text
+
 
 MainApp().run()
 
