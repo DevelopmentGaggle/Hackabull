@@ -152,4 +152,3 @@ class PromptifyApp(MDApp):
 PromptifyApp().run()
 
 
-
