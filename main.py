@@ -1,12 +1,16 @@
 import spotify_engine2
 import speechToText_engine
+from spotify_engine2 import sp as sp
 import datadog
+import spotipy
 
+#sp.user_playlist_add_tracks(sp.current_user()['uri'], sp.user_playlist_create(sp.current_user()['display_name'], 'Soup Time', public='True', collaborative='False', description='')['id'], [sub['id'] for sub in sp.search('genre:pop', limit=15, type='track')['tracks']['items']])
 dog = datadog.DataDog()
 dog.run_stt()
 while 1:
-    print("query: " + dog.stt_to_GUI.get()[0])
-    print("response: " + dog.chatGPT_to_GUI.get())
+    pass
+   # print("query: " + dog.stt_to_GUI.get()[0])
+   # print("response: " + dog.chatGPT_to_GUI.get())
 
 """
 uris, names, artists = spotify_engine.spotify_GetSongRecommendations()
