@@ -1,6 +1,6 @@
 import openai
 import API_KEY
-import spotify_engine as sp
+import spotipy as sp
 
 # Set up the OpenAI API client
 openai.api_key = API_KEY.api_key
