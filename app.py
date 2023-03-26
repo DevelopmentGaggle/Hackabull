@@ -5,7 +5,10 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 
 
 #Define windows
-class MainWindow(Screen):
+class ChatWindow(Screen):
+    pass
+
+class OprWindow(Screen):
     pass
 
 #Screen manager
@@ -13,6 +16,7 @@ class WindowManager(ScreenManager):
     pass
 
 class MainApp(MDApp):
+
     def build(self):
         # jdgskgj
         '''Red', 'Pink', 'Purple', 'DeepPurple', '

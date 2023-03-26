@@ -1,9 +1,54 @@
 
 WindowManager:
-    MainWindow: #holds chat screen & operation screen (display song info. etc.)
+    ChatWindow: #holds chat screen
+    OprWindow: #holds chat screen & operation screen (display song info. etc.)
 
-<MainWindow>
-    name: 'main'
+
+
+<ChatWindow>
+    name: 'chat'
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: (0.5, 1) #set the size
+            pos_hint: {'center_x': 0.5} #position to center
+
+            #chat screen
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.5, 1) #set the size
+                padding: dp(50), dp(50)
+
+
+                MDTopAppBar:
+                    size_hint: (1, None)
+                    title: 'Chat With '
+                    font_size: 35
+
+
+
+                MDScrollView:
+                    MDList:
+                        MDLabel:
+                            size_hint: (None, None)
+                            text: 'Hello'
+
+
+                MDFloatingActionButton:
+                    pos_hint: {'center_x': 0.5}
+                    icon: "microphone"
+                    md_bg_color: app.theme_cls.accent_color
+                    elevation: 2
+                    on_release:
+                        app.root.current = "operation" #change the current window to "second" (whatever you named for the second screen)
+                        root.manager.transition.direction = "left" #the screen goes to the left (can be up, down etc.)
+
+
+
+<OprWindow>
+    name: 'operation'
 
     MDBoxLayout:
         orientation: 'vertical'
@@ -26,47 +71,24 @@ WindowManager:
                     font_size: 35
 
 
+
                 MDScrollView:
 
                     MDList:
-
                         MDLabel:
                             size_hint: (None, None)
                             text: 'Hello'
 
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello1'
-
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello2'
-
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello3'
-
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello4'
-
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello5'
-
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello4'
-
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello5'
 
                 MDFloatingActionButton:
                     pos_hint: {'center_x': 0.5}
-                    icon: "android"
+                    icon: "microphone"
                     md_bg_color: app.theme_cls.accent_color
                     elevation: 2
+                    on_release:
+                        app.root.current = "chat" #change the current window to "second" (whatever you named for the second screen)
+                        root.manager.transition.direction = "left" #the screen goes to the left (can be up, down etc.)
+
 
 
             #operation screen
@@ -84,7 +106,10 @@ WindowManager:
                     orientation: 'vertical'
 
 
-
+                    MDLabel:
+                        text: 'Spotify'
+                        halign: 'center'
+                        size_hint: (1, None)
 
                     #Cover Img
                     AsyncImage:
