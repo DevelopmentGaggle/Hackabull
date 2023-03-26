@@ -7,6 +7,7 @@ from kivy.clock import Clock
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget
 from kivy.config import Config
 import time
+import spotipy as sp
 
 
 # https://github.com/kivy/kivy/pull/7299
@@ -105,6 +106,9 @@ class PromptifyApp(MDApp):
             self.add_message("Assistant", gpt_response)
             self.fresh_data = True
 
+        # If a song starts playing, switch screens
+        self.on_transition()
+
     def add_message(self, name, text):
         CGPT = "Assistant"
         if name == CGPT:
@@ -144,6 +148,19 @@ class PromptifyApp(MDApp):
     # Updates the screen so the two look the same
     def on_transition(self):
         if self.root.current == 'chat':
+            # Update the screen before we move to it
+            self.api_name()
+
+            # Will be used for album covers
+            self.change_picture()
+
+            # Will be used for song names
+            self.primary_text()
+
+            # Will be used for artist names
+            self.secondary_text()
+
+            # Move to the screen
             self.get_running_app().screen_direction = "left"
             self.root.current = 'operation'
 
