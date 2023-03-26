@@ -59,7 +59,7 @@ class PromptifyApp(MDApp):
         'Brown', 'Gray', 'BlueGray'''
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Teal"
-        self.theme_cls.accent_palette = "Gray"
+        self.theme_cls.accent_palette = "Red"
 
         kv = Builder.load_file('app.kv')
         return kv
