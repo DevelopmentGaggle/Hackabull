@@ -189,12 +189,12 @@ User input: "How old Benjamin Franklin was when he died?", output: "Answer: Benj
 An simple example for the second type of question when it is possible is;
 User input: "Skip the next song.", output: "Python Script: sp.next_track()"
 A complex example for the second type of question when it is possible is;
-User input: "Generate me a new spotify playlist with some random songs in it.", output: "Python Script: sp.spotify_AddSongsToPlaylist(sp.spotify_CreateNewPlaylist(), sp.spotify_GetSongRecommendations()[0])"
+User input: "Create a new playlist called party time, and add 10 taylor swift songs.", output: "Python Script: sp.user_playlist_add_tracks(sp.current_user()['uri'], sp.user_playlist_create(sp.current_user()['display_name'], 'Party Time', public='True', collaborative='False', description='')['id'], [sub['id'] for sub in sp.search('artist:Taylor Swift', limit=10, type='track')['tracks']['items']])"
 An example for the second type of question when it is not possible is;
 User input: "How many computers do I own?", output: "Python Script: N/A"
 """)
 
-prompt_output = prompt_responder.get_response("What time is it?")
+prompt_output = prompt_responder.get_response("Create two new playlists called party time 1 and soup time omega, and add pop songs to the first one and rock songs to the second")
 print(prompt_output)
 
 # if "Python Script: " in prompt_output:
