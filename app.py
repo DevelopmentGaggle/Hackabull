@@ -59,7 +59,7 @@ class MainApp(MDApp):
         # Function to execute every cycle
         Clock.schedule_interval(self.periodic, 1 / 30.)
 
-    def periodic(self):
+    def periodic(self, french_roast):
         if not self.data_doggo.stt_to_GUI.empty():
             response = self.data_doggo.stt_to_GUI.get()
             if response[1]:
@@ -69,7 +69,6 @@ class MainApp(MDApp):
 
     def add_message(self, name, text):
         CGPT = "Tesss"
-        print("test1")
         if name == CGPT:
             icon = 'robot-happy-outline'
             radius = [50, 50, 50, 0]
@@ -78,7 +77,6 @@ class MainApp(MDApp):
             icon = 'account-circle-outline'
             radius = [50, 50, 0, 50]
             color = self.theme_cls.primary_color
-        print("test2")
         widget = TwoLineAvatarIconListItem(
             IconLeftWidget(
                 icon=icon
@@ -88,7 +86,6 @@ class MainApp(MDApp):
             bg_color=color,
             radius=radius
         )
-        print("test3")
         self.root.ids.main_screen.ids.chatlist.add_widget(widget)
 
     def edit_message(self, text):
