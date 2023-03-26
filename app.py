@@ -21,7 +21,7 @@ class OprWindow(Screen):
 class WindowManager(ScreenManager):
     pass
 
-class MainApp(MDApp):
+class PromptifyApp(MDApp):
 
     data = {
         'Python': 'language-python',
@@ -90,7 +90,6 @@ class MainApp(MDApp):
 
     def edit_message(self, text):
         self.root.ids.main_screen.ids.chatlist.children[0].secondary_text = text
+PromptifyApp().run()
 
-
-MainApp().run()
 
