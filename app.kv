@@ -1,8 +1,60 @@
 
 WindowManager:
+    LogInScreen:
+        id: log_in_screen
     ChatWindow: #holds chat screen
+        id: main_screen
     OprWindow: #holds chat screen & operation screen (display song info. etc.)
+        id: operation_screen
 
+<LogInScreen>
+    name: 'start'
+
+    MDCard:
+        size_hint: None, None
+        size: 650, 800
+        pos_hint: {'center_x': 0.5, 'center_y':0.5}
+        elevation: 2
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.primary_dark
+
+        AsyncImage:
+            source: 'Resources/Promptify-Round.png'
+            keep_ratio: True
+
+        MDTextField:
+            id: name
+            hint_text: 'Name'
+            icon_left: 'account'
+            size_hint_x: None
+            width: 450
+            font_size: 40
+            pos_hint: {'center_x': 0.5}
+
+        MDTextField:
+            id: api_key
+            hint_text: 'ChatGPT API Key'
+            icon_left: 'account-key'
+            size_hint_x: None
+            width: 450
+            font_size: 40
+            pos_hint: {'center_x': 0.5}
+
+        MDRoundFlatButton:
+            text: 'Start Session'
+            text_color: 'white'
+            line_color: 'white'
+            line_width: 3
+            font_size: 35
+            pos_hint: {'center_x': 0.5}
+            #on_press: app.setup_session(name.text, api_key.text)
+            on_press: app.on_load()
+
+        Widget:
+            size_hint_y: None
+            height: 30
 
 
 <ChatWindow>
@@ -39,9 +91,10 @@ WindowManager:
 
                 MDScrollView:
                     MDList:
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello'
+                        id: chatlist
+                        padding: ('5dp', '5dp', '5dp', '5dp')
+                        spacing: '5dp'
+
 
                 MDFloatingActionButton:
                     pos_hint: {'center_x': 0.5}

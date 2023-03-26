@@ -4,6 +4,10 @@ import datadog
 
 dog = datadog.DataDog()
 dog.run_stt()
+while 1:
+    print("query: " + dog.stt_to_GUI.get()[0])
+    print("response: " + dog.chatGPT_to_GUI.get())
+
 """
 uris, names, artists = spotify_engine.spotify_GetSongRecommendations()
 print(uris)
