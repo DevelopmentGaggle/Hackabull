@@ -210,7 +210,7 @@ WindowManager:
                     padding: ('275dp', '0dp', '0dp', '50dp')
                     orientation: 'horizontal'
                     MDFloatingActionButton:
-                        id: mic_1
+                        id: microphone1
                         icon: "microphone"
                         md_bg_color: app.theme_cls.accent_color
                         elevation: 2
@@ -271,6 +271,7 @@ WindowManager:
                     spacing: '200dp'
                     padding: ('170dp', '0dp', '0dp', '50dp')
                     MDFloatingActionButton:
+                        id: microphone2
                         icon: "microphone"
                         md_bg_color: app.theme_cls.accent_color
                         elevation: 2
@@ -354,8 +355,6 @@ WindowManager:
             source: 'Resources/Promptify-Green-Round.png'
             keep_ratio: True
 
-        Widget:
-            size_hint_y: 0.4
 
         MDLabel:
             id: name
@@ -423,9 +422,6 @@ WindowManager:
         AsyncImage:
             source: 'Resources/Promptify-Green-Round.png'
             keep_ratio: True
-
-        Widget:
-            size_hint_y: 0.4
 
 
         MDLabel:

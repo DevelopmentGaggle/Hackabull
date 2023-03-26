@@ -91,12 +91,13 @@ class PromptifyApp(MDApp):
         if name == "" or password == "":
             return
 
+        name = name.capitalize()
         self.root.ids.account_screen.ids.name.text = name
 
         self.root.current = 'chat'
         # If the screen is empty, add a prompt to the chat list
         if len(self.root.ids.main_screen.ids.chatlist.children) == 0:
-            self.add_message("Assistant", "Hello, ask me a question!")
+            self.add_message("Assistant", f"Hello, {name} ask me a question!")
 
         # Add the name of the user to a locally stored variable
         self.user_name = name
@@ -108,6 +109,8 @@ class PromptifyApp(MDApp):
         Clock.schedule_interval(self.periodic, 1 / 30.)
 
     def periodic(self, french_roast):
+        song_name = ""
+
         if not self.data_doggo.stt_to_GUI.empty():
             response = self.data_doggo.stt_to_GUI.get()
 
@@ -124,26 +127,26 @@ class PromptifyApp(MDApp):
 
         if not self.data_doggo.chatGPT_to_GUI.empty():
             gpt_response = self.data_doggo.chatGPT_to_GUI.get()
+            # If a song starts playing, switch screens
+            use_last_played = 0
+            song_to_display = sp.currently_playing()
+            if song_to_display is None:
+                use_last_played = 1
+                song_to_display = sp.current_user_recently_played(limit=1)
+            if song_to_display is None:
+                use_last_played = 2
+
+            # Get song name
+            song_name = None
+            if use_last_played == 0:
+                song_name = sp.currently_playing()['item']['name']
+            elif use_last_played == 1:
+                song_name = sp.current_user_recently_played(limit=1)['items'][0]['track']['name']
+            else:
+                song_name = ""
+
             self.add_message("Assistant", gpt_response)
             self.fresh_data = True
-
-        # If a song starts playing, switch screens
-        use_last_played = 0
-        song_to_display = sp.currently_playing()
-        if song_to_display is None:
-            use_last_played = 1
-            song_to_display = sp.current_user_recently_played(limit=1)
-        if song_to_display is None:
-            use_last_played = 2
-
-        # Get song name
-        song_name = None
-        if use_last_played == 0:
-            song_name = sp.currently_playing()['item']['name']
-        elif use_last_played == 1:
-            song_name = sp.current_user_recently_played(limit=1)['items'][0]['track']['name']
-        else:
-            song_name = ""
 
         if song_name not in self.last_song:
             self.last_song = song_name
@@ -279,6 +282,13 @@ class PromptifyApp(MDApp):
     # Toggles mute condition
     def mute_microphone(self):
         self.mute = not self.mute
+        if self.mute:
+            self.root.ids.main_screen.ids.microphone1.icon = "microphone-off"
+            self.root.ids.operation_screen.ids.microphone2.icon = "microphone-off"
+
+        else:
+            self.root.ids.main_screen.ids.microphone1.icon = "microphone"
+            self.root.ids.operation_screen.ids.microphone2.icon = "microphone"
 
     def confirm(self):
         pass
