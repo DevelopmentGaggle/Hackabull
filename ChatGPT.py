@@ -1,5 +1,6 @@
 import openai
 import API_KEY
+import queue
 import spotipy as sp
 
 # Set up the OpenAI API client
@@ -150,7 +151,7 @@ class VoiceAssistant:
         User input: "Skip 2", output: "What do you mean by skip 2?"
         """)
 
-    def get_response(self, user_input):
+    def get_response(self, user_input, response_queue):
         prompt_output = self.prompt_responder.get_response(user_input)
         execute_flag = 0
 
@@ -169,7 +170,7 @@ class VoiceAssistant:
                 GPT_output = GPT_output[1:]
             print(GPT_output)
 
-
+            response_queue.put([GPT_output, execute_flag])
         return [GPT_output, execute_flag]
 
 # print(prompt_responder.get_response("Hey, can you skip the next two songs?"))
