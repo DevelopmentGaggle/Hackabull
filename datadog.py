@@ -12,9 +12,10 @@ RED = "\033[0;31m"
 GREEN = "\033[0;32m"
 YELLOW = "\033[0;33m"
 
+
 class DataDog:
     def __init__(self):
-        self.chatGPT_enabled = True  # Set to false to disable chatGPT
+        self.chatGPT_enabled = False  # Set to false to disable chatGPT
         self.query = queue.Queue()
         self.stt_to_GUI = queue.Queue()
         self.response = queue.Queue()
@@ -43,12 +44,10 @@ class DataDog:
                 sys.stdout.write("\r" + query[0])
 
             self.stt_to_GUI.put(query)
-
             if self.response.empty():
                 pass
             else:
                 response = self.response.get()
-                # print(gpt_response)
                 self.chatGPT_to_GUI.put(response[0])
 
         # Do something to kill the other threads

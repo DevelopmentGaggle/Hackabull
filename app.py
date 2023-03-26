@@ -91,10 +91,10 @@ class PromptifyApp(MDApp):
                 else:
                     self.edit_message(response[0])
 
-            if not self.data_doggo.chatGPT_to_GUI.empty():
-                gpt_response = self.data_doggo.stt_to_GUI.get()
-                print(gpt_response)
-                self.add_message("Assistant", gpt_response)
+        if not self.data_doggo.chatGPT_to_GUI.empty():
+            gpt_response = self.data_doggo.chatGPT_to_GUI.get()
+            self.add_message("Assistant", gpt_response)
+            self.fresh_data = True
 
     def add_message(self, name, text):
         CGPT = "Assistant"

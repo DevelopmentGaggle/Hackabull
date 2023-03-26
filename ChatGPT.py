@@ -11,14 +11,16 @@ model_engine = "text-davinci-003"
 
 
 class PromptResponder:
-    def __init__(self, prompt: str):
+    def __init__(self, prompt: str, print_io=0):
         self.prompt = prompt
         self.average_call = 0
         self.number_of_calls = 0
+        self.print_io = print_io
 
     def get_response(self, user_input: str):
         input_prompt = "Context: \"" + self.prompt + "\"\n\nUser input: \"" + user_input + "\"\n"
-        print(input_prompt)
+        if self.print_io:
+            print(input_prompt)
         completion = openai.Completion.create(
             engine=model_engine,
             prompt=input_prompt,
@@ -35,7 +37,8 @@ class PromptResponder:
 
 
 class VoiceAssistant:
-    def __init__(self):
+    def __init__(self, print_io=0):
+        self.print_io = print_io
         self.prompt_responder = PromptResponder("""
         The user can ask two types of questions, and you will respond with an answer if enough information is given.
         - If there is not enough information to answer the question with certainty, ask a follow up question.
@@ -160,7 +163,8 @@ class VoiceAssistant:
             GPT_output = prompt_output[prompt_output.find('Python Script: ') + 15:]
             if GPT_output[-1] == "\"":
                 GPT_output = GPT_output[0:-1]
-            print(GPT_output)
+            if self.print_io:
+                print(GPT_output)
             # prompt_output = exec(prompt_output)
         else:
             GPT_output = prompt_output[prompt_output.find('Answer: ') + 8:]
@@ -168,7 +172,8 @@ class VoiceAssistant:
                 GPT_output = GPT_output[0:-1]
             if GPT_output[0] == "\"":
                 GPT_output = GPT_output[1:]
-            print(GPT_output)
+            if self.print_io:
+                print(GPT_output)
 
             response_queue.put([GPT_output, execute_flag])
         return [GPT_output, execute_flag]
