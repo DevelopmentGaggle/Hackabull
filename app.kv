@@ -143,7 +143,7 @@ WindowManager:
             font_size: 28
             padding: (25, 10)
             pos_hint: {'center_x': 0.5}
-            on_release: app.root.current = "chat"
+            on_release: app.account_creation(name.text, email.text, password_1.text, password_2.text)
 
         Widget:
             size_hint_y: None
