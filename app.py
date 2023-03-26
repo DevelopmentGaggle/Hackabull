@@ -293,6 +293,12 @@ class PromptifyApp(MDApp):
     def confirm(self):
         pass
 
+    def clear_widgets(self):
+        self.root.ids.main_screen.ids.chatlist.clear_widgets()
+        self.root.ids.operation_screen.ids.chatlist_m.clear_widgets()
+        self.add_message("Assistant", f"Hello, {self.user_name} ask me a question!")
+
+
 
 PromptifyApp().run()
 
