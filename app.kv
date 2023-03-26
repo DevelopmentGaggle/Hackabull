@@ -29,9 +29,11 @@ WindowManager:
             size_hint_y: 0.4
 
 
-        MDFillRoundFlatButton:
+        MDRoundFlatButton:
             text: 'Start Session'
-
+            text_color: app.theme_cls.primary_color
+            line_color: app.theme_cls.primary_color
+            line_width: 3
             font_size: 28
             padding: (25, 10)
             pos_hint: {'center_x': 0.5}
@@ -81,7 +83,6 @@ WindowManager:
                         id: chatlist
                         padding: ('5dp', '5dp', '5dp', '5dp')
                         spacing: '5dp'
-
 
                 MDFloatingActionButton:
                     pos_hint: {'center_x': 0.5}
