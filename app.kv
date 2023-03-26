@@ -178,7 +178,7 @@ WindowManager:
             MDBoxLayout:
                 orientation: 'vertical'
                 size_hint: (0.5, 1) #set the size
-                padding: [dp(50), dp(0), dp(50), dp(50)]
+                padding: [dp(50), dp(0), dp(50), 0]
 
 
 
@@ -196,6 +196,10 @@ WindowManager:
 #                    md_bg_color: (30/255, 215/255, 96/255, 0.8)
 
                 MDScrollView:
+                    do_scroll_y: True
+                    size_hint: (1, 1)
+
+
                     MDList:
                         id: chatlist
                         padding: ('5dp', '5dp', '5dp', '5dp')
@@ -203,8 +207,9 @@ WindowManager:
 #chat screen
 
                 MDBoxLayout:
+                    size_hint: (1, None)
                     spacing: '200dp'
-                    padding: ('275dp', '0dp', '0dp', '0dp')
+                    padding: ('275dp', '0dp', '0dp', '50dp')
                     orientation: 'horizontal'
                     MDFloatingActionButton:
                         id: mic_1
@@ -244,7 +249,7 @@ WindowManager:
             MDBoxLayout:
                 orientation: 'vertical'
                 size_hint: (0.5, 1) #set the size
-                padding: [dp(50), dp(0), dp(50), dp(50)]
+                padding: [dp(50), dp(0), dp(50), dp(0)]
 
                 MDLabel:
                     size_hint: (1, None)
@@ -253,15 +258,18 @@ WindowManager:
                     halign: 'center'
 
                 MDScrollView:
+                    do_scroll_y: True
+                    size_hint: (1, 1)
                     MDList:
                         id: chatlist_m
                         padding: ('5dp', '5dp', '5dp', '5dp')
                         spacing: '5dp'
 
                 MDBoxLayout:
+                    size_hint: (1, None)
                     orientation: 'horizontal'
                     spacing: '200dp'
-                    padding: ('170dp', '0dp', '0dp', '0dp')
+                    padding: ('170dp', '0dp', '0dp', '50dp')
                     MDFloatingActionButton:
                         icon: "microphone"
                         md_bg_color: app.theme_cls.accent_color
