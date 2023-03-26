@@ -94,6 +94,7 @@ class PromptifyApp(MDApp):
         if not self.data_doggo.chatGPT_to_GUI.empty():
             gpt_response = self.data_doggo.chatGPT_to_GUI.get()
             self.add_message("Assistant", gpt_response)
+            self.add_message("Assistant", "Would you like me to run this?")
             self.fresh_data = True
 
     def add_message(self, name, text):
@@ -136,6 +137,7 @@ class PromptifyApp(MDApp):
     def on_transition(self):
         if self.root.current == 'chat':
             self.get_running_app().screen_direction = "left"
+
             self.root.current = 'operation'
 
         else:
@@ -149,19 +151,26 @@ class PromptifyApp(MDApp):
         self.stop = True
 
     # Functions to modify the spotify specific things, but could theoretically be used in other cases
-    def api_name(self):
-        pass
+    def api_name(self, text):
+        self.root.ids.operation_screen.ids.api_name.text = text
 
     # Will be used for album covers
-    def change_picture(self):
-        pass
+    def change_picture(self, picture_url):
+        self.root.ids.operation_screen.ids.related_image.source = picture_url
 
     # Will be used for song names
-    def primary_text(self):
-        pass
+    def primary_text(self, text):
+        self.root.ids.operation_screen.ids.primary_description.text = text
 
     # Will be used for artist names
-    def secondary_text(self):
+    def secondary_text(self, text):
+        self.root.ids.operation_screen.ids.secondary_description.text = text
+
+    # Additional functions for extraneous behaviors
+    def mute(self, state):
+        pass
+
+    def confirm(self):
         pass
 
 
