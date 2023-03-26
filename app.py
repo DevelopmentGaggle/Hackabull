@@ -16,7 +16,11 @@ class WindowManager(ScreenManager):
     pass
 
 class MainApp(MDApp):
-
+    data = {
+        'Python': 'language-python',
+        'PHP': 'language-php',
+        'C++': 'language-cpp',
+    }
     def build(self):
 
         '''Red', 'Pink', 'Purple', 'DeepPurple', '
