@@ -128,9 +128,25 @@ class PromptifyApp(MDApp):
             self.fresh_data = True
 
         # If a song starts playing, switch screens
-        song = ""
-        if song not in self.last_song:
-            self.last_song = song
+        use_last_played = 0
+        song_to_display = sp.currently_playing()
+        if song_to_display is None:
+            use_last_played = 1
+            song_to_display = sp.current_user_recently_played(limit=1)
+        if song_to_display is None:
+            use_last_played = 2
+
+        # Get song name
+        song_name = None
+        if use_last_played == 0:
+            song_name = sp.currently_playing()['item']['name']
+        elif use_last_played == 1:
+            song_name = sp.current_user_recently_played(limit=1)['items'][0]['track']['name']
+        else:
+            song_name = ""
+
+        if song_name not in self.last_song:
+            self.last_song = song_name
             self.on_transition()
 
     def add_message(self, name, text):
@@ -184,16 +200,45 @@ class PromptifyApp(MDApp):
     def on_transition(self):
         if self.root.current == 'chat':
             # Update the screen before we move to it
-            self.api_name("test")
+            self.api_name("Spotify")
+            use_last_played = 0
+
+            song_to_display = sp.currently_playing()
+            if song_to_display is None:
+                use_last_played = 1
+                song_to_display = sp.current_user_recently_played(limit=1)
+            if song_to_display is None:
+                use_last_played = 2
 
             # Will be used for album covers
-            self.change_picture("test")
+            album_cover = None
+            if use_last_played == 0:
+                album_cover = sp.currently_playing()['item']['name']
+            elif use_last_played == 1:
+                album_cover = sp.current_user_recently_played(limit=1)['items'][0]['track']['name']
+            else:
+                album_cover = 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+            self.change_picture(album_cover)
 
             # Will be used for song names
-            self.primary_text("test")
+            song_name = None
+            if use_last_played == 0:
+                song_name = sp.currently_playing()['item']['name']
+            elif use_last_played == 1:
+                song_name = sp.current_user_recently_played(limit=1)['items'][0]['track']['name']
+            else:
+                song_name = "Not Playing"
+            self.primary_text(song_name)
 
             # Will be used for artist names
-            self.secondary_text("test")
+            artist_name = None
+            if use_last_played == 0:
+                artist_name = sp.currently_playing()['item']['artists'][0]['name']
+            elif use_last_played == 1:
+                artist_name = sp.current_user_recently_played(limit=1)['items'][0]['track']['artists'][0]['name']
+            else:
+                artist_name = "No Artist"
+            self.secondary_text(artist_name)
 
             # Move to the screen
             self.get_running_app().screen_direction = "left"

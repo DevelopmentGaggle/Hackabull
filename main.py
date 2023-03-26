@@ -4,11 +4,13 @@ from spotify_engine2 import sp as sp
 import datadog
 import spotipy
 
+#print(sp.current_user_recently_played(limit=1)['items'][0]['track']['artists'][0]['name'])
+print(sp.currently_playing()['item']['album']['images'][0]['url'])
 #sp.user_playlist_add_tracks(sp.current_user()['uri'], sp.user_playlist_create(sp.current_user()['display_name'], 'Soup Time', public='True', collaborative='False', description='')['id'], [sub['id'] for sub in sp.search('genre:pop', limit=15, type='track')['tracks']['items']])
-dog = datadog.DataDog()
-dog.run_stt()
-while 1:
-    pass
+#dog = datadog.DataDog()
+#dog.run_stt()
+#while 1:
+#    pass
    # print("query: " + dog.stt_to_GUI.get()[0])
    # print("response: " + dog.chatGPT_to_GUI.get())
 
