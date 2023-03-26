@@ -216,9 +216,9 @@ class PromptifyApp(MDApp):
             # Will be used for album covers
             album_cover = None
             if use_last_played == 0:
-                album_cover = sp.currently_playing()['item']['name']
+                album_cover = sp.currently_playing()['item']['album']['images'][0]['url']
             elif use_last_played == 1:
-                album_cover = sp.current_user_recently_played(limit=1)['items'][0]['track']['name']
+                album_cover = sp.currently_playing()['item']['album']['images'][0]['url']
             else:
                 album_cover = 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
             self.change_picture(album_cover)
