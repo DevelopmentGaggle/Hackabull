@@ -3,3 +3,5 @@ venv/
 API_KEY.py
 Example.py
 test.py
+credentials.json
+token.json
