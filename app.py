@@ -163,6 +163,29 @@ class PromptifyApp(MDApp):
     def move_history(self):
         self.root.current = 'history'
 
+    # Functions to modify the spotify specific things, but could theoretically be used in other cases
+    def api_name(self, text):
+        self.root.ids.operation_screen.ids.api_name.text = text
+
+    # Will be used for album covers
+    def change_picture(self, picture_url):
+        self.root.ids.operation_screen.ids.related_image.source = picture_url
+
+    # Will be used for song names
+    def primary_text(self, text):
+        self.root.ids.operation_screen.ids.primary_description.text = text
+
+    # Will be used for artist names
+    def secondary_text(self, text):
+        self.root.ids.operation_screen.ids.secondary_description.text = text
+
+    # Additional functions for extraneous behaviors
+    def mute(self, state):
+        pass
+
+    def confirm(self):
+        pass
+
 
 PromptifyApp().run()
 

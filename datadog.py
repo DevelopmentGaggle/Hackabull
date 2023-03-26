@@ -48,7 +48,14 @@ class DataDog:
                 pass
             else:
                 response = self.response.get()
-                self.chatGPT_to_GUI.put(response[0])
+
+                if response[1]:
+                    self.chatGPT_to_GUI.put("Would you like to run this?")
+                    self.chatGPT_to_GUI.put(response[0])
+                    # consider executing the function
+                else:
+                    self.chatGPT_to_GUI.put(response[0])
+                    # Straight up output!
 
         # Do something to kill the other threads
 
