@@ -33,7 +33,7 @@ class DataDog:
 
         while not self.kill_threads:
             query = self.query.get()
-            wakeWordPos = query[0].lower().find('alexa')
+            wakeWordPos = query[0].lower().find('sophie')
             if wakeWordPos >= 0:
                 if query[1] == 1:
                     sys.stdout.write(GREEN)
@@ -57,6 +57,7 @@ class DataDog:
                         self.chatGPT_to_GUI.put(response[0])
                         try:
                             exec(response[0])
+                            print(response[0])
                             tts = self.canned_responses[(self.canned_response_seed * 3) % len(self.canned_responses)]
                             self.canned_response_seed *= 3
                             self.canned_response_seed += 1

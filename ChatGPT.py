@@ -148,6 +148,10 @@ class VoiceAssistant:
         User input: "Skip two songs.", output: "Python Script: sp.next_track(), sp.next_track()"
         A complex example for the second type of question when it is possible is;
         User input: "Create a new playlist called party time, and add 10 taylor swift songs.", output: "Python Script: sp.user_playlist_add_tracks(sp.current_user()['uri'], sp.user_playlist_create(sp.current_user()['display_name'], 'Party Time', public='True', collaborative='False', description='')['id'], [sub['id'] for sub in sp.search('artist:Taylor Swift', limit=10, type='track')['tracks']['items']])"
+        Another example for the second type of question when it is possible is;
+        User input: "Play Party in the USA by Miley Cyrus.", output: "Python Script: sp.start_playback(uris=[sp.search('track:Party in the USA artist:Miley Cyrus', type='track')['tracks']['items'][0]['uri']])"
+        Another example for the second type of question when it is possible is;
+        User input: "Play my playlist called soup.", output: "Python Script: sp.start_playback(context_uri=[sub['uri'] for sub in sp.current_user_playlists()['items'] if sub.get('name').lower()=='soup'][0])"
         An example for the second type of question when it is not possible is;
         User input: "How many computers do I own?", output: "Python Script: Not available"
         An example for either when not enough information is given:
