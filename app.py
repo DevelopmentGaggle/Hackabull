@@ -88,7 +88,8 @@ class PromptifyApp(MDApp):
         else:
             icon = 'account-circle-outline'
             radius = [50, 50, 0, 50]
-            color = self.theme_cls.primary_color
+            # color = self.theme_cls.primary_color
+            color = (30/255, 215/255, 96/255, 0.8)
         widget = TwoLineAvatarIconListItem(
             IconLeftWidget(
                 icon=icon
