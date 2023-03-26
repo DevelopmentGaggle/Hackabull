@@ -76,6 +76,15 @@ class PromptifyApp(MDApp):
         kv = Builder.load_file('app.kv')
         return kv
 
+    def account_creation(self, name, email, password, confirm_password):
+        if name == "" or email == "" or password == "":
+            return
+
+        if password != confirm_password:
+            return
+
+        self.on_load(name, password)
+
     def on_load(self, name, password):
         if name == "" or password == "":
             return
