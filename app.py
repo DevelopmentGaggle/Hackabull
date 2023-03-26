@@ -7,19 +7,23 @@ from kivy.clock import Clock
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget
 
 
-#Define windows
+# Define windows
 class LogInScreen(Screen):
     pass
+
 
 class ChatWindow(Screen):
     pass
 
+
 class OprWindow(Screen):
     pass
+
 
 #Screen manager
 class WindowManager(ScreenManager):
     pass
+
 
 class PromptifyApp(MDApp):
 
@@ -33,9 +37,8 @@ class PromptifyApp(MDApp):
         super().__init__(**kwargs)
         self.data_doggo = datadog.DataDog()
 
-
     def build(self):
-#colors
+        #colors
         '''Red', 'Pink', 'Purple', 'DeepPurple', '
         Indigo', 'Blue', 'LightBlue', 'Cyan',
         'Teal', 'Green', 'LightGreen', 'Lime',
@@ -90,6 +93,8 @@ class PromptifyApp(MDApp):
 
     def edit_message(self, text):
         self.root.ids.main_screen.ids.chatlist.children[0].secondary_text = text
+
+
 PromptifyApp().run()
 
 
