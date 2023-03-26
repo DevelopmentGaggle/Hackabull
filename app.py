@@ -19,12 +19,20 @@ class WindowManager(ScreenManager):
     pass
 
 class MainApp(MDApp):
+
+    data = {
+        'Python': 'language-python',
+        'PHP': 'language-php',
+        'C++': 'language-cpp',
+    }
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.data_doggo = datadog.DataDog()
 
-    def build(self):
 
+    def build(self):
+#colors
         '''Red', 'Pink', 'Purple', 'DeepPurple', '
         Indigo', 'Blue', 'LightBlue', 'Cyan',
         'Teal', 'Green', 'LightGreen', 'Lime',

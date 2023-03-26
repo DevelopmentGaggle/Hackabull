@@ -9,6 +9,11 @@ WindowManager:
     name: 'chat'
     MDBoxLayout:
         orientation: 'vertical'
+        MDFloatingActionButtonSpeedDial:
+            icon: "cog-outline"
+            data: app.data
+            root_button_anim: True
+            size_hint: (None, None)
 
         MDBoxLayout:
             orientation: 'horizontal'
@@ -19,13 +24,14 @@ WindowManager:
             MDBoxLayout:
                 orientation: 'vertical'
                 size_hint: (0.5, 1) #set the size
-                padding: dp(50), dp(50)
+                padding: [dp(50), dp(0), dp(50), dp(50)]
 
 
                 MDTopAppBar:
                     size_hint: (1, None)
                     title: 'Chat With '
                     font_size: 35
+                    anchor_title: "left"
 
 
 
@@ -34,7 +40,6 @@ WindowManager:
                         MDLabel:
                             size_hint: (None, None)
                             text: 'Hello'
-
 
                 MDFloatingActionButton:
                     pos_hint: {'center_x': 0.5}
@@ -46,12 +51,17 @@ WindowManager:
                         root.manager.transition.direction = "left" #the screen goes to the left (can be up, down etc.)
 
 
-
 <OprWindow>
     name: 'operation'
 
     MDBoxLayout:
         orientation: 'vertical'
+        MDFloatingActionButtonSpeedDial:
+            icon: "cog-outline"
+            data: app.data
+            root_button_anim: True
+            size_hint: (None, None)
+
 
         MDBoxLayout:
             orientation: 'horizontal'
@@ -62,13 +72,14 @@ WindowManager:
             MDBoxLayout:
                 orientation: 'vertical'
                 size_hint: (0.5, 1) #set the size
-                padding: dp(50), dp(50)
+                padding: [dp(50), dp(0), dp(50), dp(50)]
 
 
                 MDTopAppBar:
                     size_hint: (1, None)
                     title: 'Chat With '
                     font_size: 35
+                    anchor_title: "left"
 
 
 
@@ -95,7 +106,7 @@ WindowManager:
             MDBoxLayout:
                 orientation: 'vertical'
                 size_hint: (0.5, 1) #set the size
-                padding: dp(50), dp(50)
+                padding: [dp(50), dp(0), dp(50), dp(50)]
 
             #For Spotify
                 #TODO: ImageList then card view?`
@@ -119,13 +130,14 @@ WindowManager:
 
                     #TODO: Do styling for song info.
                     #TODO: add an icon??
+
                     MDLabel:
                         text: 'Song Title'
                         font_size: 20
                         size_hint: (1, None)
                         halign: 'center'
                         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                        opacity: 1
+
 
                     MDLabel:
                         text: 'Artist Name'
