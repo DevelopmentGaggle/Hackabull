@@ -31,9 +31,6 @@ WindowManager:
             source: 'Resources/Promptify-Green-Round.png'
             keep_ratio: True
 
-        Widget:
-            size_hint_y: 0.4
-
         MDTextField:
             id: name
             hint_text: 'Your Name'
@@ -67,7 +64,7 @@ WindowManager:
             font_size: 28
             padding: (25, 10)
             pos_hint: {'center_x': 0.5}
-            on_release: app.on_load()
+            on_release: app.on_load(name.text, password.text)
 
         Widget:
             size_hint_y: None

@@ -7,6 +7,7 @@ from kivy.clock import Clock
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget
 from kivy.config import Config
 import time
+import spotipy as sp
 
 
 # https://github.com/kivy/kivy/pull/7299
@@ -57,6 +58,8 @@ class PromptifyApp(MDApp):
         super().__init__(**kwargs)
         self.data_doggo = datadog.DataDog()
         self.fresh_data = True
+        self.last_song = ""
+        self.user_name = "user"
 
     def build(self):
         Window.bind(on_request_close=self.on_request_close)
@@ -73,11 +76,19 @@ class PromptifyApp(MDApp):
         kv = Builder.load_file('app.kv')
         return kv
 
-    def on_load(self):
+    def on_load(self, name, password):
+        if name == "" or password == "":
+            return
+
+        self.root.ids.account_screen.ids.name.text = name
+
         self.root.current = 'chat'
         # If the screen is empty, add a prompt to the chat list
         if len(self.root.ids.main_screen.ids.chatlist.children) == 0:
-            self.add_message("Voice Assistant", "Hello, ask me a question!")
+            self.add_message("Assistant", "Hello, ask me a question!")
+
+        # Add the name of the user to a locally stored variable
+        self.user_name = name
 
         # Load TTS thread
         self.data_doggo.run_stt()
@@ -91,7 +102,7 @@ class PromptifyApp(MDApp):
 
             # If the data is fresh, make a new prompt
             if self.fresh_data:
-                self.add_message("User", response[0])
+                self.add_message(self.user_name, response[0])
                 self.fresh_data = False
             else:
                 if response[1]:
@@ -104,6 +115,12 @@ class PromptifyApp(MDApp):
             gpt_response = self.data_doggo.chatGPT_to_GUI.get()
             self.add_message("Assistant", gpt_response)
             self.fresh_data = True
+
+        # If a song starts playing, switch screens
+        song = ""
+        if song not in self.last_song:
+            self.last_song = song
+            self.on_transition()
 
     def add_message(self, name, text):
         CGPT = "Assistant"
@@ -144,6 +161,19 @@ class PromptifyApp(MDApp):
     # Updates the screen so the two look the same
     def on_transition(self):
         if self.root.current == 'chat':
+            # Update the screen before we move to it
+            self.api_name("test")
+
+            # Will be used for album covers
+            self.change_picture("test")
+
+            # Will be used for song names
+            self.primary_text("test")
+
+            # Will be used for artist names
+            self.secondary_text("test")
+
+            # Move to the screen
             self.get_running_app().screen_direction = "left"
             self.root.current = 'operation'
 
