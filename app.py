@@ -105,6 +105,9 @@ class PromptifyApp(MDApp):
         self.root.ids.main_screen.ids.chatlist.children[0].secondary_text = text
 
 
-PromptifyApp().run()
+program = PromptifyApp().run()
+
+# Once this stops, turn the kill flag on, signalling to all threads to stop
+program.data_doggo.
 
 

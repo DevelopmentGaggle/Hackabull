@@ -32,7 +32,7 @@ class DataDog:
                 sys.stdout.write(GREEN)
                 sys.stdout.write("\r" + query[0] + "\n")
 
-                if(self.chatGPT_enabled):
+                if self.chatGPT_enabled:
                     gpt_thread = Thread(target=self.ai.get_response, args=(query[0], self.response))
                     gpt_thread.start()
                 else:

@@ -1,6 +1,6 @@
 Promptify - HACKABULL-23
 ====================
-<img src="Resources/Promptify-Round.png" alt="drawing" width="600"/>
+<img src="Resources/Promptify-Green-Round.png" alt="drawing" width="600"/>
 
 
 Letting your voice do the work
