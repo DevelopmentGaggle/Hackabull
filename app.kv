@@ -1,4 +1,5 @@
-
+<MDLabel>
+    color: (234/255, 242/255, 184/255)
 WindowManager:
     LogInScreen:
         id: log_in_screen
@@ -18,7 +19,7 @@ WindowManager:
         padding: 25
         spacing: 25
         orientation: 'vertical'
-        md_bg_color: app.theme_cls.primary_dark
+        md_bg_color: (30/255, 215/255, 96/255, 0.8)
 
         AsyncImage:
             source: 'Resources/Promptify-Round.png'
@@ -28,12 +29,11 @@ WindowManager:
             size_hint_y: 0.4
 
 
-        MDRoundFlatButton:
+        MDFillRoundFlatButton:
             text: 'Start Session'
-            text_color: 'white'
-            line_color: 'white'
-            line_width: 1.5
-            font_size: 34
+
+            font_size: 28
+            padding: (25, 10)
             pos_hint: {'center_x': 0.5}
             #on_press: app.setup_session(name.text, api_key.text)
             on_press: app.on_load()
@@ -54,6 +54,8 @@ WindowManager:
             root_button_anim: True
             size_hint: (None, None)
             opacity: 0.8
+
+
 
         MDBoxLayout:
             orientation: 'horizontal'
@@ -162,6 +164,7 @@ WindowManager:
 
 
                     MDLabel:
+                        color: 'white'
                         text: 'Spotify'
                         halign: 'center'
                         size_hint: (1, None)
@@ -177,6 +180,7 @@ WindowManager:
 
                     MDLabel:
                         text: 'Song Title'
+                        color: 'white'
                         font_size: 20
                         size_hint: (1, None)
                         halign: 'center'
@@ -184,6 +188,7 @@ WindowManager:
 
 
                     MDLabel:
+                        color: 'white'
                         text: 'Artist Name'
                         font_size: 20
                         size_hint: (1, None)
