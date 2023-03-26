@@ -22,12 +22,21 @@ Config.set('kivy', 'exit_on_escape', '0')
 class LogInScreen(Screen):
     pass
 
+class SignInScreen(Screen):
+    pass
+
 
 class ChatWindow(Screen):
     pass
 
 
 class OprWindow(Screen):
+    pass
+
+class AccountWindow(Screen):
+    pass
+
+class HistoryWindow(Screen):
     pass
 
 
@@ -147,6 +156,12 @@ class PromptifyApp(MDApp):
         self.data_doggo.kill_threads = True
         # time.sleep(1)
         self.stop = True
+
+    def move_account(self, widget):
+        self.root.current = 'account'
+
+    def move_history(self):
+        self.root.current = 'history'
 
 
 PromptifyApp().run()
