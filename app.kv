@@ -195,6 +195,7 @@ WindowManager:
                 MDScrollView:
                     do_scroll_y: True
                     size_hint: (1, 1)
+                    padding: (0, 0, 0, '50dp')
 
 
                     MDList:
@@ -255,15 +256,22 @@ WindowManager:
                     halign: 'center'
 
                 MDScrollView:
+
                     do_scroll_y: True
                     size_hint: (1, 1)
+                    padding: (0, 0, 0, '50dp')
+
                     MDList:
                         id: chatlist_m
                         padding: ('5dp', '5dp', '5dp', '5dp')
                         spacing: '5dp'
 
+
+
+
                 MDBoxLayout:
-                 c   size_hint: (1, None)
+
+                    size_hint: (1, None)
                     orientation: 'horizontal'
                     spacing: '200dp'
                     padding: ('170dp', '0dp', '0dp', '50dp')
@@ -342,11 +350,11 @@ WindowManager:
         pos_hint: {'center_x': 0.5, 'center_y':0.5}
         elevation: 2
         padding: 25
-        spacing: 25
         orientation: 'vertical'
         md_bg_color: (30/255, 215/255, 96/255, 0.8)
 
         AsyncImage:
+            md_bg_color: (1, 0, 0, 1)
             source: 'Resources/Promptify-Green-Round.png'
             keep_ratio: True
 
@@ -355,6 +363,7 @@ WindowManager:
 
         MDLabel:
             id: name
+            size_hint: (1, None)
             text: 'Your Name'
             size_hint_y: None
             halign: 'center'
@@ -363,6 +372,7 @@ WindowManager:
 
         MDLabel:
             id: date_since
+            size_hint: (1, None)
             text: 'Using Promptify since: 2023/03/26'
             size_hint_y: None
             halign: 'center'
@@ -371,6 +381,7 @@ WindowManager:
 
         MDLabel:
             id: num_playolists
+            size_hint: (1, None)
             text: 'Number of playlists created: 20'
             size_hint_y: None
             halign: 'center'
@@ -379,7 +390,8 @@ WindowManager:
 
         MDLabel:
             id: num_songs
-            text: 'Number of songs added'
+            size_hint: (1, None)
+            text: 'Number of songs added: 152'
             size_hint_y: None
             halign: 'center'
             font_size: 24
