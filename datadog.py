@@ -14,19 +14,20 @@ YELLOW = "\033[0;33m"
 
 class DataDog:
     def __init__(self):
-        self.chatGPT_enabled = False #Set to false to disable chatGPT
+        self.chatGPT_enabled = True  # Set to false to disable chatGPT
         self.query = queue.Queue()
         self.stt_to_GUI = queue.Queue()
         self.response = queue.Queue()
         self.chatGPT_to_GUI = queue.Queue()
         self.is_talking = False
         self.ai = ChatGPT.VoiceAssistant()
+        self.kill_threads = False
 
     def stt_driver(self):
         thread = speechToText_engine.SpeechToText(self.query)
         thread.start()
 
-        while 1:
+        while not self.kill_threads:
             query = self.query.get()
             if query[1] == 1:
                 sys.stdout.write(GREEN)
@@ -47,7 +48,10 @@ class DataDog:
                 pass
             else:
                 response = self.response.get()
+                # print(gpt_response)
                 self.chatGPT_to_GUI.put(response[0])
+
+        # Do something to kill the other threads
 
     def run_stt(self):
         stt_thread = Thread(target=self.stt_driver)

@@ -49,14 +49,12 @@ WindowManager:
     MDBoxLayout:
 #        md_bg_color: (30/255, 215/255, 96/255, 0.8)
         orientation: 'vertical'
-        MDFloatingActionButtonSpeedDial:
-            icon: "cog-outline"
-            data: app.data
-            root_button_anim: True
-            size_hint: (None, None)
-            opacity: 0.8
-
-
+#        MDFloatingActionButtonSpeedDial:
+#            icon: "cog-outline"
+#            data: app.data
+#            root_button_anim: True
+#            size_hint: (None, None)
+#            opacity: 0.8
 
         MDBoxLayout:
             orientation: 'horizontal'
@@ -89,9 +87,7 @@ WindowManager:
                     icon: "microphone"
                     md_bg_color: app.theme_cls.primary_color
                     elevation: 2
-                    on_release:
-                        app.root.current = "operation" #change the current window to "second" (whatever you named for the second screen)
-                        root.manager.transition.direction = "left" #the screen goes to the left (can be up, down etc.)
+                    on_release: app.on_transition()
 
 
 <OprWindow>
@@ -100,16 +96,13 @@ WindowManager:
     MDBoxLayout:
 #        md_bg_color: (30/255, 215/255, 96/255, 0.8)
         orientation: 'vertical'
-        MDFloatingActionButtonSpeedDial:
-            icon: "cog-outline"
-            data: app.data
-            root_button_anim: True
-            size_hint: (None, None)
-            opacity: 0.8
-
-
+#        MDFloatingActionButtonSpeedDial:
+#            icon: "cog-outline"
+#            data: app.data
+#            root_button_anim: True
+#            size_hint: (None, None)
+#            opacity: 0.8
         MDBoxLayout:
-
             orientation: 'horizontal'
             size_hint: (0.8, 1) #set the size
             pos_hint: {'center_x': 0.5} #position to center
@@ -120,30 +113,24 @@ WindowManager:
                 size_hint: (0.5, 1) #set the size
                 padding: [dp(50), dp(0), dp(50), dp(50)]
 
-
                 MDLabel:
                     size_hint: (1, None)
                     text: 'Promptify'
                     font_size: 35
                     halign: 'center'
 
-
-
                 MDScrollView:
-
                     MDList:
-                        MDLabel:
-                            size_hint: (None, None)
-                            text: 'Hello'
+                        id: chatlist_m
+                        padding: ('5dp', '5dp', '5dp', '5dp')
+                        spacing: '5dp'
 
                 MDFloatingActionButton:
                     pos_hint: {'center_x': 0.5}
                     icon: "microphone"
                     md_bg_color: app.theme_cls.primary_color
                     elevation: 2
-                    on_release:
-                        app.root.current = "chat" #change the current window to "second" (whatever you named for the second screen)
-                        root.manager.transition.direction = "left" #the screen goes to the left (can be up, down etc.)
+                    on_release: app.on_transition()
 
 
 
@@ -195,11 +182,4 @@ WindowManager:
                         halign: 'center'
                         pos_hint: {'center_x': 0.5}
                         color: 'white'
-
-
-
-
-
-
-
 
