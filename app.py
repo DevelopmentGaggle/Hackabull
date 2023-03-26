@@ -233,6 +233,13 @@ class PromptifyApp(MDApp):
     # Toggles mute condition
     def mute_microphone(self):
         self.mute = not self.mute
+        if self.mute:
+            self.root.ids.main_screen.ids.microphone1.icon = "microphone-off"
+            self.root.ids.operation_screen.ids.microphone2.icon = "microphone-off"
+
+        else:
+            self.root.ids.main_screen.ids.microphone1.icon = "microphone"
+            self.root.ids.operation_screen.ids.microphone2.icon = "microphone"
 
     def confirm(self):
         pass
