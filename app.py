@@ -108,6 +108,6 @@ class PromptifyApp(MDApp):
 program = PromptifyApp().run()
 
 # Once this stops, turn the kill flag on, signalling to all threads to stop
-program.data_doggo.
+# program.data_doggo.
 
 
