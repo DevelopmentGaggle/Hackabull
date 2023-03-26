@@ -175,7 +175,7 @@ class VoiceAssistant:
             if self.print_io:
                 print(GPT_output)
 
-            response_queue.put([GPT_output, execute_flag])
+        response_queue.put([GPT_output, execute_flag])
         return [GPT_output, execute_flag]
 
 # print(prompt_responder.get_response("Hey, can you skip the next two songs?"))

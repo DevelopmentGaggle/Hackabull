@@ -11,6 +11,7 @@ from threading import Thread
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:\\GoogleCloud\\service_key.json"
 
+isPaused = False;
 
 class SpeechToText(threading.Thread):
     def __init__(self, transcription):
@@ -263,6 +264,9 @@ def start_speech_to_text(transcription):
     with mic_manager as stream:
 
         while not stream.closed:
+            while(isPaused):
+                sys.stdout.write("Paused")
+
             sys.stdout.write(YELLOW)
             sys.stdout.write(
                 "\n" + str(STREAMING_LIMIT * stream.restart_counter) + ": NEW REQUEST\n"
