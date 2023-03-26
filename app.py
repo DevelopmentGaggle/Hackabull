@@ -16,7 +16,7 @@ class OprWindow(Screen):
 class WindowManager(ScreenManager):
     pass
 
-class MainApp(MDApp):
+class PromptifyApp(MDApp):
 
     data = {
         'Python': 'language-python',
@@ -67,6 +67,5 @@ class MainApp(MDApp):
 
     def edit_message(self, text):
         pass
-
-MainApp().run()
+PromptifyApp().run()
 

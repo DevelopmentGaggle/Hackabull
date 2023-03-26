@@ -8,6 +8,7 @@ WindowManager:
 <ChatWindow>
     name: 'chat'
     MDBoxLayout:
+        md_bg_color: (30/255, 215/255, 96/255, 0.7)
         orientation: 'vertical'
         MDFloatingActionButtonSpeedDial:
             icon: "cog-outline"
@@ -27,11 +28,11 @@ WindowManager:
                 padding: [dp(50), dp(0), dp(50), dp(50)]
 
 
-                MDTopAppBar:
+                MDLabel:
                     size_hint: (1, None)
-                    title: 'Chat With '
+                    text: 'Promptify'
                     font_size: 35
-                    anchor_title: "left"
+                    halign: 'center'
 
 
 
@@ -55,6 +56,7 @@ WindowManager:
     name: 'operation'
 
     MDBoxLayout:
+        md_bg_color: (30/255, 215/255, 96/255, 0.7)
         orientation: 'vertical'
         MDFloatingActionButtonSpeedDial:
             icon: "cog-outline"
@@ -64,6 +66,7 @@ WindowManager:
 
 
         MDBoxLayout:
+
             orientation: 'horizontal'
             size_hint: (0.8, 1) #set the size
             pos_hint: {'center_x': 0.5} #position to center
@@ -75,11 +78,11 @@ WindowManager:
                 padding: [dp(50), dp(0), dp(50), dp(50)]
 
 
-                MDTopAppBar:
+                MDLabel:
                     size_hint: (1, None)
-                    title: 'Chat With '
+                    text: 'Promptify'
                     font_size: 35
-                    anchor_title: "left"
+                    halign: 'center'
 
 
 
@@ -89,7 +92,6 @@ WindowManager:
                         MDLabel:
                             size_hint: (None, None)
                             text: 'Hello'
-
 
                 MDFloatingActionButton:
                     pos_hint: {'center_x': 0.5}
@@ -111,6 +113,7 @@ WindowManager:
             #For Spotify
                 #TODO: ImageList then card view?`
                 MDCard:
+
                     elevation: 2
                     padding: 25
                     spacing: 25
