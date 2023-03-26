@@ -90,6 +90,7 @@ class PromptifyApp(MDApp):
         if name == "" or password == "":
             return
 
+        name = name.capitalize()
         self.root.ids.account_screen.ids.name.text = name
 
         self.root.current = 'chat'
