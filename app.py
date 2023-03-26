@@ -8,6 +8,9 @@ from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget
 
 
 #Define windows
+class LogInScreen(Screen):
+    pass
+
 class ChatWindow(Screen):
     pass
 
@@ -45,27 +48,28 @@ class MainApp(MDApp):
         return kv
 
     def on_load(self):
+        self.root.current = 'chat'
         # If the screen is empty, add a prompt to the chat list
         if len(self.root.ids.main_screen.ids.chatlist.children) == 0:
             self.add_message("Voice Assistant", "Hello, ask me a question!")
 
         # Load TTS thread
-        self.data_doggo.run_tts()
+        self.data_doggo.run_stt()
 
         # Function to execute every cycle
         Clock.schedule_interval(self.periodic, 1 / 30.)
 
     def periodic(self):
-        if not self.data_doggo.response.empty():
-            response = self.data_doggo.response.get()
-            if not self.data_doggo.is_talking:
-                is_talking = True
-                self.add_message("test", response[0])
+        if not self.data_doggo.stt_to_GUI.empty():
+            response = self.data_doggo.stt_to_GUI.get()
+            if response[1]:
+                self.add_message("User", response[0])
             else:
                 self.edit_message(response[0])
 
-    def add_message(self, name, type, text):
+    def add_message(self, name, text):
         CGPT = "Tesss"
+        print("test1")
         if name == CGPT:
             icon = 'robot-happy-outline'
             radius = [50, 50, 50, 0]
@@ -74,6 +78,7 @@ class MainApp(MDApp):
             icon = 'account-circle-outline'
             radius = [50, 50, 0, 50]
             color = self.theme_cls.primary_color
+        print("test2")
         widget = TwoLineAvatarIconListItem(
             IconLeftWidget(
                 icon=icon
@@ -83,6 +88,7 @@ class MainApp(MDApp):
             bg_color=color,
             radius=radius
         )
+        print("test3")
         self.root.ids.main_screen.ids.chatlist.add_widget(widget)
 
     def edit_message(self, text):
