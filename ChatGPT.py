@@ -37,7 +37,7 @@ class PromptResponder:
 
 
 class VoiceAssistant:
-    def __init__(self, print_io=0):
+    def __init__(self, print_io=1):
         self.print_io = print_io
         self.prompt_responder = PromptResponder("""
         The user can ask two types of questions, and you will respond with an answer if enough information is given.
@@ -152,7 +152,7 @@ class VoiceAssistant:
         User input: "How many computers do I own?", output: "Python Script: Not available"
         An example for either when not enough information is given:
         User input: "Skip 2", output: "What do you mean by skip 2?"
-        """)
+        """, self.print_io)
 
     def get_response(self, user_input, response_queue):
         prompt_output = self.prompt_responder.get_response(user_input)
